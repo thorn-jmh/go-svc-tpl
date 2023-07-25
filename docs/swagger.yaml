@@ -1,0 +1,52 @@
+basePath: /api
+definitions:
+  dto.GetFooResp:
+    properties:
+      age:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  dto.Resp:
+    description: Resp is the general response struct
+    properties:
+      code:
+        description: status code
+        example: 200
+        type: integer
+      data:
+        description: data payload
+      msg:
+        description: message
+        example: success
+        type: string
+    type: object
+info:
+  contact: {}
+  description: A simple go service template, which is used to build a go service quickly.
+  title: go-svc-tpl API
+  version: 0.0.1
+paths:
+  /foo/get:
+    get:
+      consumes:
+      - application/json
+      description: just get a foo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/dto.Resp'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.GetFooResp'
+              type: object
+      summary: get foo
+      tags:
+      - foo
+swagger: "2.0"

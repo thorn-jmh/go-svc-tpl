@@ -1,0 +1,15 @@
+App:
+  RunLevel: debug
+#  RunLevel: release
+
+WebServer:
+  Port: 8080
+  WriteTimeout: 10 #ms
+  ReadTimeout: 10 #ms
+
+Database:
+  Host: localhost
+  Port: 3306
+  User: root
+  Pwd: 123456
+  DBName: go_svc_tpl

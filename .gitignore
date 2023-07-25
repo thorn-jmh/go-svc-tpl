@@ -1,0 +1,14 @@
+# BUILD
+*.exe
+build
+
+# SECRETS
+*.pem
+config.yaml
+
+# DEV
+.history
+.idea
+.vscode
+
+# OTHER
