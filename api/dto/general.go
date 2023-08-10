@@ -1,6 +1,7 @@
 package dto
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/sirupsen/logrus"
@@ -39,7 +40,7 @@ func ResponseFail(ctx *gin.Context, err error) {
 	if code == stacktrace.NoCode {
 		code = http.StatusInternalServerError
 	}
-	msg := stacktrace.Current(err).Error()
+	msg := fmt.Sprintf("%#s", stacktrace.Current(err))
 	Response(ctx, int(code), msg, nil)
 
 }

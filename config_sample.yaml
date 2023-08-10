@@ -8,8 +8,4 @@ WebServer:
   ReadTimeout: 10 #ms
 
 Database:
-  Host: localhost
-  Port: 3306
-  User: root
-  Pwd: 123456
-  DBName: go_svc_tpl
+  DSN: root:password@tcp(localhost:3306)/short_link?charset=utf8mb4&parseTime=True&loc=Local

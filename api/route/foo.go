@@ -20,15 +20,6 @@ type FooCtlWrapper struct {
 
 // >>>>>>>>>>>>>>>>>> Controller >>>>>>>>>>>>>>>>>>
 
-// GetFoo godoc
-//
-//	@Summary		get foo
-//	@Description	just get a foo
-//	@Tags			foo
-//	@Accept			json
-//	@Produce		json
-//	@Success		200	{object}	dto.Resp{data=dto.GetFooResp}
-//	@Router			/foo/get [get]
 func (w FooCtlWrapper) GetFoo(c *gin.Context) {
 	var req dto.GetFooReq
 	if err := dto.BindReq(c, &req); err != nil {

@@ -2,7 +2,6 @@ package dao
 
 import (
 	"context"
-	"fmt"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
@@ -25,11 +24,7 @@ var DB = func(ctx context.Context) *DBMS {
 // >>>>>>>>>>>> init >>>>>>>>>>>>
 
 type DBCfg struct {
-	Host     string `mapstructure:"Host"`
-	Port     int    `mapstructure:"Port"`
-	User     string `mapstructure:"User"`
-	Password string `mapstructure:"Pwd"`
-	DBName   string `mapstructure:"DBName"`
+	DSN string
 }
 
 func InitDB() {
@@ -39,12 +34,19 @@ func InitDB() {
 		logrus.Fatal(err)
 	}
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		cfg.User, cfg.Password, cfg.Host, cfg.Port, cfg.DBName,
-	)
-
-	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	db, err = gorm.Open(mysql.Open(cfg.DSN), &gorm.Config{})
 	if err != nil {
 		logrus.Fatal(err)
 	}
+
+	// Uncomment this if you want to use auto migrate
+	//
+	// if err := db.AutoMigrate(); err != nil {
+	//     logrus.Fatal(err)
+	// }
+
+	if viper.GetString("App.RunLevel") == "debug" {
+		db = db.Debug()
+	}
+
 }

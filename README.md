@@ -11,12 +11,9 @@ go-svc-tpl 是为了快速构建 golang web 项目开发的项目框架，以及
 
 ## 设计思路
 
-见文档 [design](./docs/design.md)
+见文档 [design](./docs/design.md) (未更新)
 
-目前设想有两种开发模式选择：
-- 其一是预先定义好 API 文档，从而生成相应的代码，只需填写必要的逻辑部分，这应该能适应大部分项目的合理开发流程。
-- 另一种是先写代码，再通过代码生成 API 文档，这种方式不可避免要写很多重复，低逻辑的代码，这是 web 后端本身的特性所决定的，但是这种方式可能可以适应一些前后端开发周期不一致的项目，或是一些以 db 为中心的项目。
-
+Design-Drive 的后端开发模式，先进行 API 和 model 设计，后进行后端开发。
 
 ## 开发计划
 
@@ -24,9 +21,9 @@ go-svc-tpl 是为了快速构建 golang web 项目开发的项目框架，以及
 
 
 
-#### 2023.07.26
 
-- 决定使用 ts 作为 API/model 描述语言，废弃使用 openAPI
+
+- 使用 apifox 作为 api 文档编辑，导出 OpenAPI 文档并生成代码
 - 寻找 go 中使用 `@` 做代码注解的实现
 
 
@@ -34,7 +31,7 @@ go-svc-tpl 是为了快速构建 golang web 项目开发的项目框架，以及
 
 
 - [x] 完成一个最简示例版本
-- [ ] 解析 ts 生成代码的工具 (应该是使用node)
+- [x] 解析 ts 生成代码的工具 (应该是使用node)
 - [ ] 分析文档生成 api 的工具，或许还有模板代码的生成工具 (go开发)
 - [ ] 支持 mongo
 
@@ -60,5 +57,3 @@ go-svc-tpl 是为了快速构建 golang web 项目开发的项目框架，以及
 
 - [ ] **fork stacktrace 并改进 current/code 等功能**
 - [ ] *cache (generic interface)
-- [ ] fork [guregu/null](https://github.com/guregu/null/tree/master) 以确保在 gorm 中没有预期外行为，
-
