@@ -34,7 +34,9 @@ func InitDB() {
 		logrus.Fatal(err)
 	}
 
-	db, err = gorm.Open(mysql.Open(cfg.DSN), &gorm.Config{})
+	db, err = gorm.Open(mysql.Open(cfg.DSN), &gorm.Config{
+		TranslateError: true,
+	})
 	if err != nil {
 		logrus.Fatal(err)
 	}
